@@ -7,9 +7,13 @@ dist: trusty
 sudo: required
 
 before_install:
-  - sudo ./Setup/Install_16.04.sh
+  - cd Setup
+  - sudo ./Install_16.04.sh
+  - cd ..
   - sudo npm install .
   - sudo npm install -g jasmine
-
+  - cd  API
+  - npm install .
+  - cd ..
 script:
   - npm test

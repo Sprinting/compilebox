@@ -1,4 +1,4 @@
-var LANGS = {
+const LANGS = {
     "Python": [0, "text/x-python"],
     "Ruby": [1, "text/x-ruby"],
     "Clojure": [2, "text/x-clojure"],
@@ -19,7 +19,7 @@ var LANGS = {
 }
 
 
-var Codes = {
+const Codes = {
     "Python": "print \"Hello\"",
     "Ruby": "puts \"Hello\"",
     "Clojure": '(println "Hello")',
@@ -38,4 +38,4 @@ var Codes = {
     "Rust": "fn main() {\n\tprintln!(\"Hello\");\n}",
 }
 
-module.exports.tests = Codes
+module.exports.tests = Codes;

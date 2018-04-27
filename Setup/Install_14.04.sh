@@ -14,8 +14,8 @@ echo "Docker Setup complete"
 # NodeJS setup
 ###########################
 apt-get update
-apt-get install -y nodejs
-apt-get install -y npm
+#apt-get install -y nodejs
+#apt-get install -y npm
 echo "NodeJS setup Complete"
 
 ###########################

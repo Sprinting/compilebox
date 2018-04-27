@@ -1,6 +1,5 @@
 const api = require('../API/app');
 const endpoint = `http://localhost:${api.port}/${api.endpoint}`;
-const server = api.server;
 const lang_tests = require('../API/langs').tests
 
 const request = require('request')
@@ -28,7 +27,7 @@ describe("python", () => {
     it("should return 200, with compilation results", (done) => {
         let pass = false
         console.log(`querying ${endpoint}`)
-        server.listen(api.port, "localhost", (error) => {
+        api.server.listen(api.port, "localhost", (error) => {
             if (!error) {
                 const code = lang_tests.Python
                 const body = {
@@ -39,11 +38,11 @@ describe("python", () => {
                 request.post({url:endpoint,form:body}, (error, response, body) => {
                     pass = !error && response.statusCode == 200
                     console.log(response.body)
-                    server.close()
+                    api.server.close()
                     expect(pass).toBe(true)
                     done()
                 })
             }
         })
-    })
+    },(api.timeout+10)*1000)
 })

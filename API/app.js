@@ -16,7 +16,9 @@ var bodyParser = require('body-parser');
 var app = express();
 var server = http.createServer(app);
 var port = 8080;
-var endpoint = 'compile'
+var endpoint = 'compile';
+var timeout_value = 20;//Timeout Value, In Seconds
+
 
 var ExpressBrute = require('express-brute');
 var store = new ExpressBrute.MemoryStore(); // stores state locally, don't use this in production
@@ -51,7 +53,6 @@ app.post(`/${endpoint}`, bruteforce.prevent, function (req, res) {
     var folder = 'temp/' + random(10); //folder in which the temporary folder will be saved
     var path = __dirname + "/"; //current working path
     var vm_name = 'virtual_machine'; //name of virtual machine that we want to execute
-    var timeout_value = 20;//Timeout Value, In Seconds
 
     //details of this are present in DockerSandbox.js
     var sandboxType = new sandBox(timeout_value, path, folder, vm_name, arr.compilerArray[language][0], arr.compilerArray[language][1], code, arr.compilerArray[language][2], arr.compilerArray[language][3], arr.compilerArray[language][4], stdin);
@@ -78,4 +79,5 @@ if (!module.parent) {
 }
 module.exports.server = server;
 module.exports.port = port;
-module.exports.endpoint = endpoint; 
+module.exports.endpoint = endpoint;
+module.exports.timeout = timeout_value; 
